@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, CheckCircle2, ClipboardList, Cog, MapPin, Menu, MessageCircle, Phone, PhoneCall, Search, Wrench, X } from "lucide-react";
-import { business, serviceMessage, telHref, whatsappHref } from "@/lib/business-config";
+import { business, buyMotorMessage, rentalMessage, sellMotorMessage, serviceMessage, setupMessage, telHref, whatsappHref } from "@/lib/business-config";
 import { ContactForm } from "@/components/site/ContactForm";
+import ashikImg from "@/assets/ashik.jpg.asset.json";
+import wazedImg from "@/assets/wazed-ali.jpg.asset.json";
 import hero from "@/assets/hero-motor.jpg";
 import coil from "@/assets/coil.jpg";
 import threePhase from "@/assets/three-phase.jpg";
@@ -15,10 +17,10 @@ import riceCooker from "@/assets/rice-cooker.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${business.name} | মোটর মেরামত সিংড়া, নাটোর` },
-      { name: "description", content: "সিংড়া, নাটোরে ইলেকট্রিক মোটর মেরামত, মোটর কয়েল বাধাই, সাবমার্সিবল পাম্প, রাইস মিল মোটর এবং সিঙ্গেল ফেজ ও থ্রি ফেজ মোটর সার্ভিসিং।" },
+      { title: `${business.name} | মোটর মেরামত, পাম্প ভাড়া ও মোটর ক্রয়-বিক্রয়` },
+      { name: "description", content: "সিংড়া, নাটোরে মোটর মেরামত, মোটর কয়েল রিওয়াইন্ডিং, সাবমার্সিবল পাম্প ভাড়া, পানি তোলার মোটর ভাড়া, ইলেকট্রিক মোটর ক্রয়-বিক্রয় এবং রাইস মিল ও মিল-কারখানার মোটর সেটআপ ও ইলেকট্রিক্যাল কাজ।" },
       { property: "og:title", content: business.name },
-      { property: "og:description", content: "সকল ধরনের ইলেকট্রিক মোটর মেরামত ও কয়েল রিওয়াইন্ডিং — সিংড়া, নাটোর।" },
+      { property: "og:description", content: "মোটর মেরামত, কয়েল রিওয়াইন্ডিং, পাম্প ভাড়া ও মোটর ক্রয়-বিক্রয় — সিংড়া, নাটোর।" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -28,24 +30,42 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { t: "ইলেকট্রিক মোটর মেরামত", d: "চালু না হওয়া, গরম হওয়া বা শব্দ করা মোটরের পরীক্ষা ও মেরামত।", img: hero, alt: "খোলা ইলেকট্রিক মোটর মেরামত করছেন একজন টেকনিশিয়ান" },
-  { t: "কপার কয়েল রিওয়াইন্ডিং", d: "পুড়ে যাওয়া মোটরের কয়েল নতুন কপার তার দিয়ে বাধাই।", img: coil, alt: "মোটরের স্টেটরে কপার কয়েল বাধাই" },
-  { t: "সিঙ্গেল ফেজ মোটর", d: "বাসাবাড়ি ও দোকানের সিঙ্গেল ফেজ মোটর, ক্যাপাসিটর ও সুইচ সমস্যা।", img: coil, alt: "সিঙ্গেল ফেজ মোটরের কয়েল" },
-  { t: "থ্রি ফেজ ইন্ডাস্ট্রিয়াল মোটর", d: "কারখানা ও মিলের থ্রি ফেজ মোটরের সার্ভিসিং ও রিওয়াইন্ডিং।", img: threePhase, alt: "নীল রঙের থ্রি ফেজ ইন্ডাস্ট্রিয়াল মোটর" },
-  { t: "সাবমার্সিবল পাম্প", d: "সাবমার্সিবল ও পানির পাম্পের মোটর মেরামত।", img: submersible, alt: "ওয়ার্কবেঞ্চে রাখা সাবমার্সিবল পানির পাম্প" },
-  { t: "রাইস মিল মেশিনারি", d: "রাইস মিলের মোটর ও সংশ্লিষ্ট বৈদ্যুতিক যন্ত্রের মেরামত।", img: riceMill, alt: "বেল্ট ড্রাইভসহ রাইস মিলের মোটর" },
-  { t: "সিলিং ও টেবিল ফ্যান", d: "ফ্যানের কয়েল, বেয়ারিং ও রেগুলেটর সমস্যা।", img: fan, alt: "খোলা সিলিং ফ্যানের মোটর ও টেবিল ফ্যান" },
-  { t: "মিক্সার ও ব্লেন্ডার", d: "মিক্সার গ্রাইন্ডার ও ব্লেন্ডারের মোটর মেরামত।", img: mixer, alt: "মেরামতের জন্য খোলা মিক্সার গ্রাইন্ডার" },
-  { t: "রাইস কুকার মেরামত", d: "হিটিং এলিমেন্ট, থার্মোস্ট্যাট ও সুইচ সমস্যা।", img: riceCooker, alt: "মাল্টিমিটার দিয়ে রাইস কুকার পরীক্ষা" },
-  { t: "ইন্ডাস্ট্রিয়াল মোটর সার্ভিসিং", d: "বেয়ারিং পরিবর্তন, পরিষ্কার ও নিয়মিত রক্ষণাবেক্ষণ।", img: threePhase, alt: "ইন্ডাস্ট্রিয়াল মোটর সার্ভিসিং" },
+  { t: "সিঙ্গেল ফেজ মোটর মেরামত", d: "বাসাবাড়ি ও দোকানের সিঙ্গেল ফেজ মোটর, ক্যাপাসিটর ও সুইচ সমস্যা।", img: coil, alt: "সিঙ্গেল ফেজ মোটরের কয়েল" },
+  { t: "থ্রি ফেজ মোটর মেরামত", d: "কারখানা ও মিলের থ্রি ফেজ মোটরের সার্ভিসিং ও রিওয়াইন্ডিং।", img: threePhase, alt: "নীল রঙের থ্রি ফেজ ইন্ডাস্ট্রিয়াল মোটর" },
+  { t: "মোটর কয়েল রিওয়াইন্ডিং", d: "পুড়ে যাওয়া মোটরের কয়েল নতুন কপার তার দিয়ে বাধাই।", img: coil, alt: "মোটরের স্টেটরে কপার কয়েল বাধাই" },
+  { t: "রাইস মিল ও কারখানার মোটর", d: "রাইস মিলের মোটর ও সংশ্লিষ্ট বৈদ্যুতিক যন্ত্রের মেরামত।", img: riceMill, alt: "বেল্ট ড্রাইভসহ রাইস মিলের মোটর" },
+  { t: "সাবমার্সিবল পাম্প মেরামত", d: "সাবমার্সিবল ও পানির পাম্পের মোটর মেরামত।", img: submersible, alt: "ওয়ার্কবেঞ্চে রাখা সাবমার্সিবল পানির পাম্প" },
+  { t: "পানি তোলার মোটর ও পাম্প ভাড়া", d: "জমি, পুকুর বা কৃষিকাজে পানি তোলার জন্য মোটর ও সাবমার্সিবল পাম্প ভাড়া।", img: submersible, alt: "পানি তোলার সাবমার্সিবল পাম্প", msg: rentalMessage, cta: "পাম্প ভাড়া নিতে যোগাযোগ করুন" },
+  { t: "ইলেকট্রিক মোটর ক্রয়-বিক্রয়", d: "নতুন ও পুরোনো ইলেকট্রিক মোটর কেনা ও বিক্রির জন্য যোগাযোগ করুন।", img: hero, alt: "বিক্রির জন্য রাখা ইলেকট্রিক মোটর", msg: buyMotorMessage, cta: "মোটর কেনাবেচায় যোগাযোগ করুন" },
+  { t: "ফ্যান মেরামত", d: "সিলিং ও টেবিল ফ্যানের কয়েল, বেয়ারিং ও রেগুলেটর সমস্যা।", img: fan, alt: "খোলা সিলিং ফ্যানের মোটর ও টেবিল ফ্যান" },
+  { t: "মিক্সার ও ব্লেন্ডার মেশিন", d: "মিক্সার গ্রাইন্ডার ও ব্লেন্ডারের মোটর মেরামত।", img: mixer, alt: "মেরামতের জন্য খোলা মিক্সার গ্রাইন্ডার" },
+  { t: "রাইস কুকার ও অন্যান্য যন্ত্রপাতি", d: "রাইস কুকারের হিটিং এলিমেন্ট, থার্মোস্ট্যাট ও সুইচসহ অন্যান্য ইলেকট্রিক্যাল যন্ত্র মেরামত।", img: riceCooker, alt: "মাল্টিমিটার দিয়ে রাইস কুকার পরীক্ষা" },
+  { t: "মিল-কারখানায় মোটর সেটআপ", d: "মিল-কারখানায় মোটর স্থাপন, সংযোগ ও প্রয়োজনীয় ইলেকট্রিক্যাল কাজ।", img: threePhase, alt: "কারখানায় মোটর সেটআপ", msg: setupMessage, cta: "সেটআপের জন্য যোগাযোগ করুন" },
 ];
-const nav = [["#home", "হোম"], ["#about", "আমাদের সম্পর্কে"], ["#services", "সার্ভিস"], ["#process", "মেরামত প্রক্রিয়া"], ["#contact", "যোগাযোগ"]];
+const formServices = ["মোটর মেরামত", "কয়েল রিওয়াইন্ডিং", "সাবমার্সিবল পাম্প মেরামত", "পানি তোলার মোটর/পাম্প ভাড়া", "ইলেকট্রিক মোটর কিনতে চাই", "ইলেকট্রিক মোটর বিক্রি করতে চাই", "মিল-কারখানার মোটর সেটআপ", "অন্যান্য ইলেকট্রিক্যাল কাজ"];
+const nav = [["#home", "হোম"], ["#about", "আমাদের সম্পর্কে"], ["#services", "সার্ভিস"], ["#rental", "পাম্প ভাড়া"], ["#trade", "মোটর কেনাবেচা"], ["#contact", "যোগাযোগ"]];
 const hp = ["১ HP", "২ HP", "৩ HP", "৪ HP", "৫ HP", "২০ HP", "৩০ HP", "৫০ HP", "অন্যান্য"];
 const steps = [
   { i: PhoneCall, t: "যোগাযোগ করুন" },
   { i: ClipboardList, t: "মোটর বা মেশিনের সমস্যা জানান" },
   { i: Search, t: "পরীক্ষা ও খরচ নিয়ে আলোচনা করুন" },
   { i: Wrench, t: "সম্মতি অনুযায়ী মেরামতের কাজ সম্পন্ন করুন" },
+];
+const people = [
+  {
+    name: "আশিক",
+    role: "ব্যবসার পরিচিতি ও গ্রাহক যোগাযোগ",
+    desc: "আশিক ইলেকট্রিক ওয়ার্কস এন্ড সার্ভিসিং সেন্টারের সার্ভিস, মোটর কেনাবেচা, পাম্প ভাড়া এবং অন্যান্য কাজ সম্পর্কে জানতে যোগাযোগ করুন।",
+    img: ashikImg.url,
+    alt: "আশিক — আশিক ইলেকট্রিক ওয়ার্কস এন্ড সার্ভিসিং সেন্টার",
+  },
+  {
+    name: "মোঃ ওয়াজেদ আলী",
+    role: "মোটর মেরামত ও মিল-কারখানার ইলেকট্রিক্যাল কাজ",
+    desc: "সিঙ্গেল ফেজ ও থ্রি ফেজ মোটর, কয়েল রিওয়াইন্ডিং, সাবমার্সিবল পাম্প এবং মিল-কারখানার বিভিন্ন ইলেকট্রিক্যাল কাজ সম্পর্কে জানতে যোগাযোগ করুন।",
+    img: wazedImg.url,
+    alt: "মোঃ ওয়াজেদ আলী — মোটর মেরামত ও ইলেকট্রিক্যাল কাজ",
+  },
 ];
 
 const btn = "inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 font-semibold transition";
@@ -98,8 +118,8 @@ function Index() {
           <div className="container-site grid items-center gap-10 py-14 md:py-20 lg:grid-cols-2">
             <div className="animate-rise min-w-0">
               <p className="mb-4 inline-flex rounded-full bg-accent/15 px-3 py-1 text-sm text-accent">{business.address}</p>
-              <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">সকল ধরনের ইলেকট্রিক মোটর মেরামত ও কয়েল রিওয়াইন্ডিং</h1>
-              <p className="mt-5 text-lg opacity-85">বাসাবাড়ি, দোকান, রাইস মিল ও কারখানার মোটর, সাবমার্সিবল পাম্প এবং বিভিন্ন ইলেকট্রিক্যাল মেশিনের মেরামত ও সার্ভিসিং।</p>
+              <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">মোটর মেরামত, কয়েল রিওয়াইন্ডিং, পাম্প ভাড়া ও মোটর ক্রয়-বিক্রয়</h1>
+              <p className="mt-5 text-lg opacity-85">বাসাবাড়ি, দোকান, রাইস মিল ও কারখানার মোটর, সাবমার্সিবল পাম্প মেরামত ও ভাড়া, মোটর কেনাবেচা এবং মিল-কারখানার ইলেকট্রিক্যাল কাজ।</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <CallLink className={`${btn} bg-accent text-accent-foreground hover:brightness-105`}><Phone className="size-5" /> ফোন করুন</CallLink>
                 <WaLink className={`${btn} bg-whatsapp text-primary-foreground hover:brightness-110`}><MessageCircle className="size-5" /> WhatsApp-এ যোগাযোগ</WaLink>
@@ -111,13 +131,21 @@ function Index() {
           </div>
         </section>
 
-        <section id="about" className="container-site grid items-center gap-10 py-16 md:grid-cols-2">
-          <img src={coil} alt="কপার কয়েল বাধাইয়ের কাজ" loading="lazy" width={944} height={704} className="aspect-[4/3] w-full rounded-2xl object-cover" />
-          <div>
-            <h2 className="text-3xl font-bold text-primary">আমাদের সম্পর্কে</h2>
-            <p className="mt-4 text-lg text-muted-foreground">{business.name} সিংড়া, নাটোরে ইলেকট্রিক মোটর মেরামত, কয়েল রিওয়াইন্ডিং এবং বিভিন্ন বৈদ্যুতিক যন্ত্রপাতির সার্ভিসিং করে থাকে।</p>
-            <p className="mt-3 font-medium">মালিক: {business.owner}</p>
-            <ul className="mt-5 grid gap-2">{["সিঙ্গেল ফেজ ও থ্রি ফেজ মোটর", "পরীক্ষার পর খরচ জানানো হয়", "বাসাবাড়ি থেকে কারখানা পর্যন্ত"].map((x) => <li key={x} className="flex gap-2"><CheckCircle2 className="size-5 text-accent" />{x}</li>)}</ul>
+        <section id="about" className="container-site py-16">
+          <h2 className="text-3xl font-bold text-primary">আমাদের সম্পর্কে</h2>
+          <p className="mt-4 max-w-3xl text-lg text-muted-foreground">{business.name} সিংড়া, নাটোরে ইলেকট্রিক মোটর মেরামত, কয়েল রিওয়াইন্ডিং, পাম্প ভাড়া, মোটর কেনাবেচা এবং মিল-কারখানার বৈদ্যুতিক কাজ করে থাকে।</p>
+          <ul className="mt-5 grid max-w-3xl gap-2">{["সিঙ্গেল ফেজ ও থ্রি ফেজ মোটর", "পরীক্ষার পর খরচ জানানো হয়", "বাসাবাড়ি থেকে কারখানা পর্যন্ত"].map((x) => <li key={x} className="flex gap-2"><CheckCircle2 className="size-5 text-accent" />{x}</li>)}</ul>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {people.map((p) => (
+              <article key={p.name} className="flex min-w-0 flex-col gap-5 rounded-2xl border bg-card p-6 shadow-sm sm:flex-row sm:items-center">
+                <img src={p.img} alt={p.alt} loading="lazy" width={896} height={1152} className="aspect-[3/4] w-full rounded-xl object-cover object-top sm:w-44 sm:shrink-0" />
+                <div className="min-w-0">
+                  <h3 className="text-xl font-bold text-primary">{p.name}</h3>
+                  <p className="mt-1 font-medium text-accent">{p.role}</p>
+                  <p className="mt-3 text-muted-foreground">{p.desc}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -131,7 +159,7 @@ function Index() {
                   <div className="flex flex-1 flex-col p-5">
                     <h3 className="text-lg font-semibold">{s.t}</h3>
                     <p className="mt-2 flex-1 text-muted-foreground">{s.d}</p>
-                    <WaLink msg={serviceMessage(s.t)} className="mt-4 inline-flex items-center gap-2 font-semibold text-whatsapp"><MessageCircle className="size-4" /> WhatsApp-এ জানুন</WaLink>
+                    <WaLink msg={s.msg ?? serviceMessage(s.t)} className="mt-4 inline-flex items-center gap-2 font-semibold text-whatsapp"><MessageCircle className="size-4" /> {s.cta ?? "WhatsApp-এ জানুন"}</WaLink>
                   </div>
                 </article>
               ))}
@@ -139,7 +167,48 @@ function Index() {
           </div>
         </section>
 
-        <section className="container-site py-16">
+        <section id="rental" className="container-site grid items-center gap-10 py-16 lg:grid-cols-2">
+          <img src={submersible} alt="পানি তোলার সাবমার্সিবল পাম্প" loading="lazy" width={944} height={704} className="aspect-[4/3] w-full rounded-2xl object-cover" />
+          <div>
+            <h2 className="text-3xl font-bold text-primary">পানি তোলার মোটর ও সাবমার্সিবল পাম্প ভাড়া</h2>
+            <p className="mt-4 text-lg text-muted-foreground">জমি, পুকুর, কৃষিকাজ বা অন্যান্য প্রয়োজনীয় কাজে পানি তোলার জন্য মোটর ও সাবমার্সিবল পাম্প ভাড়ার বিষয়ে যোগাযোগ করুন। পানির গভীরতা, প্রয়োজনীয় পানি, বিদ্যুতের ব্যবস্থা এবং কাজের ধরন অনুযায়ী উপযুক্ত পাম্প সম্পর্কে আলোচনা করে নিতে পারবেন।</p>
+            <p className="mt-3 text-sm text-muted-foreground">পাম্পের প্রাপ্যতা, ভাড়ার সময়, পরিবহন ও খরচ আলোচনা করে নিশ্চিত করা হয়।</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <WaLink msg={rentalMessage} className={`${btn} bg-whatsapp text-primary-foreground hover:brightness-110`}><MessageCircle className="size-5" /> পাম্প ভাড়া নিতে যোগাযোগ করুন</WaLink>
+              <CallLink className={`${btn} bg-accent text-accent-foreground hover:brightness-105`}><Phone className="size-5" /> ফোন করুন</CallLink>
+            </div>
+          </div>
+        </section>
+
+        <section id="trade" className="bg-ink py-16 text-ink-foreground">
+          <div className="container-site grid items-center gap-10 lg:grid-cols-2">
+            <div>
+              <h2 className="text-3xl font-bold">ইলেকট্রিক মোটর ক্রয়-বিক্রয়</h2>
+              <p className="mt-4 text-lg opacity-85">বিভিন্ন ধরনের ইলেকট্রিক মোটর কেনা ও বিক্রির জন্য যোগাযোগ করুন। মোটরের HP, সিঙ্গেল ফেজ বা থ্রি ফেজ, ব্যবহার, অবস্থা এবং প্রয়োজন অনুযায়ী উপলভ্য মোটর ও দাম সম্পর্কে জেনে নিন। পুরোনো মোটর বিক্রি করতে চাইলে সেটির বিবরণও জানাতে পারেন।</p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <WaLink msg={buyMotorMessage} className={`${btn} bg-whatsapp text-primary-foreground hover:brightness-110`}><MessageCircle className="size-5" /> মোটর কিনতে চাই</WaLink>
+                <WaLink msg={sellMotorMessage} className={`${btn} border border-ink-foreground/30 hover:bg-ink-foreground/10`}><MessageCircle className="size-5" /> মোটর বিক্রি করতে চাই</WaLink>
+                <CallLink className={`${btn} bg-accent text-accent-foreground hover:brightness-105`}><Phone className="size-5" /> ফোন করুন</CallLink>
+              </div>
+              <p className="mt-4 text-sm opacity-70">নির্দিষ্ট মোটরের প্রাপ্যতা ও দাম যোগাযোগের মাধ্যমে নিশ্চিত করা হয়।</p>
+            </div>
+            <img src={hero} alt="ক্রয়-বিক্রয়ের জন্য ইলেকট্রিক মোটর" loading="lazy" width={1280} height={960} className="aspect-[4/3] w-full rounded-2xl object-cover" />
+          </div>
+        </section>
+
+        <section className="container-site grid items-center gap-10 py-16 lg:grid-cols-2">
+          <img src={threePhase} alt="মিল-কারখানায় মোটর সেটআপ" loading="lazy" width={944} height={704} className="aspect-[4/3] w-full rounded-2xl object-cover" />
+          <div>
+            <h2 className="text-3xl font-bold text-primary">মিল-কারখানার মোটর সেটআপ ও ইলেকট্রিক্যাল কাজ</h2>
+            <p className="mt-4 text-lg text-muted-foreground">রাইস মিল, কারখানা, ওয়ার্কশপ এবং অন্যান্য প্রতিষ্ঠানের মোটর স্থাপন, মোটর সংযোগ এবং প্রয়োজনীয় ইলেকট্রিক্যাল কাজের জন্য যোগাযোগ করুন। কাজের ধরন, মোটরের ক্ষমতা এবং স্থাপনার প্রয়োজন অনুযায়ী বিস্তারিত আলোচনা করে নেওয়া যাবে।</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <WaLink msg={setupMessage} className={`${btn} bg-whatsapp text-primary-foreground hover:brightness-110`}><MessageCircle className="size-5" /> WhatsApp-এ জানান</WaLink>
+              <CallLink className={`${btn} bg-accent text-accent-foreground hover:brightness-105`}><Phone className="size-5" /> ফোন করুন</CallLink>
+            </div>
+          </div>
+        </section>
+
+        <section className="container-site pb-16">
           <h2 className="text-3xl font-bold text-primary">মোটরের ক্ষমতা</h2>
           <div className="mt-6 flex flex-wrap gap-3">{hp.map((h) => <span key={h} className="rounded-xl border-2 border-primary/20 bg-card px-5 py-3 text-lg font-semibold text-primary">{h}</span>)}</div>
           <p className="mt-4 text-muted-foreground">মেরামত সম্ভব কিনা তা মোটর পরীক্ষার পর জানানো হয়।</p>
@@ -170,7 +239,7 @@ function Index() {
             </div>
             {!configured && <p className="mt-4 text-sm text-muted-foreground">ফোন নম্বর এখনো যুক্ত করা হয়নি।</p>}
           </div>
-          <ContactForm services={services.map((s) => s.t)} />
+          <ContactForm services={formServices} />
         </section>
       </main>
 
