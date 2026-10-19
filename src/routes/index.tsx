@@ -3,10 +3,11 @@ import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, CheckCircle2, ClipboardList, Cog, MapPin, Menu, MessageCircle, Phone, PhoneCall, Search, Wrench, X } from "lucide-react";
 import { business, buyMotorMessage, rentalMessage, sellMotorMessage, serviceMessage, setupMessage, telHref, whatsappHref } from "@/lib/business-config";
 import { ContactForm } from "@/components/site/ContactForm";
-import ashikImg from "@/assets/ashik.jpg";
-import wazedImg from "@/assets/wazed-ali.jpg";
+import person1Img from "@/assets/person2.jpg";
+import person2Img from "@/assets/person1.jpg";
 import hero from "@/assets/hero-motor.jpg";
 import coil from "@/assets/coil.jpg";
+import coil2 from "@/assets/Rewinding.png";
 import threePhase from "@/assets/three-phase.jpg";
 import submersible from "@/assets/submersible.jpg";
 import riceMill from "@/assets/rice-mill.jpg";
@@ -32,7 +33,7 @@ export const Route = createFileRoute("/")({
 const services = [
   { t: "সিঙ্গেল ফেজ মোটর মেরামত", d: "বাসাবাড়ি ও দোকানের সিঙ্গেল ফেজ মোটর, ক্যাপাসিটর ও সুইচ সমস্যা।", img: coil, alt: "সিঙ্গেল ফেজ মোটরের কয়েল" },
   { t: "থ্রি ফেজ মোটর মেরামত", d: "কারখানা ও মিলের থ্রি ফেজ মোটরের সার্ভিসিং ও রিওয়াইন্ডিং।", img: threePhase, alt: "নীল রঙের থ্রি ফেজ ইন্ডাস্ট্রিয়াল মোটর" },
-  { t: "মোটর কয়েল রিওয়াইন্ডিং", d: "পুড়ে যাওয়া মোটরের কয়েল নতুন কপার তার দিয়ে বাধাই।", img: coil, alt: "মোটরের স্টেটরে কপার কয়েল বাধাই" },
+  { t: "মোটর কয়েল রিওয়াইন্ডিং", d: "পুড়ে যাওয়া মোটরের কয়েল নতুন কপার তার দিয়ে বাধাই।", img: coil2, alt: "মোটরের স্টেটরে কপার কয়েল বাধাই" },
   { t: "রাইস মিল ও কারখানার মোটর", d: "রাইস মিলের মোটর ও সংশ্লিষ্ট বৈদ্যুতিক যন্ত্রের মেরামত।", img: riceMill, alt: "বেল্ট ড্রাইভসহ রাইস মিলের মোটর" },
   { t: "সাবমার্সিবল পাম্প মেরামত", d: "সাবমার্সিবল ও পানির পাম্পের মোটর মেরামত।", img: submersible, alt: "ওয়ার্কবেঞ্চে রাখা সাবমার্সিবল পানির পাম্প" },
   { t: "পানি তোলার মোটর ও পাম্প ভাড়া", d: "জমি, পুকুর বা কৃষিকাজে পানি তোলার জন্য মোটর ও সাবমার্সিবল পাম্প ভাড়া।", img: submersible, alt: "পানি তোলার সাবমার্সিবল পাম্প", msg: rentalMessage, cta: "পাম্প ভাড়া নিতে যোগাযোগ করুন" },
@@ -53,17 +54,17 @@ const steps = [
 ];
 const people = [
   {
-    name: "আশিক",
+    name: "মোঃ আশিকুল ইসলাম আলী",
     role: "ব্যবসার পরিচিতি ও গ্রাহক যোগাযোগ",
     desc: "আশিক ইলেকট্রিক ওয়ার্কস এন্ড সার্ভিসিং সেন্টারের সার্ভিস, মোটর কেনাবেচা, পাম্প ভাড়া এবং অন্যান্য কাজ সম্পর্কে জানতে যোগাযোগ করুন।",
-    img: ashikImg.url,
+    img: person1Img,
     alt: "আশিক — আশিক ইলেকট্রিক ওয়ার্কস এন্ড সার্ভিসিং সেন্টার",
   },
   {
     name: "মোঃ ওয়াজেদ আলী",
     role: "মোটর মেরামত ও মিল-কারখানার ইলেকট্রিক্যাল কাজ",
     desc: "সিঙ্গেল ফেজ ও থ্রি ফেজ মোটর, কয়েল রিওয়াইন্ডিং, সাবমার্সিবল পাম্প এবং মিল-কারখানার বিভিন্ন ইলেকট্রিক্যাল কাজ সম্পর্কে জানতে যোগাযোগ করুন।",
-    img: wazedImg.url,
+    img: person2Img,
     alt: "মোঃ ওয়াজেদ আলী — মোটর মেরামত ও ইলেকট্রিক্যাল কাজ",
   },
 ];
