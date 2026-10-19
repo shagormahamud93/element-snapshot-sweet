@@ -5,11 +5,16 @@ import { business, buyMotorMessage, rentalMessage, sellMotorMessage, serviceMess
 import { ContactForm } from "@/components/site/ContactForm";
 import person1Img from "@/assets/person2.jpg";
 import person2Img from "@/assets/person1.jpg";
-import hero from "@/assets/hero-motor.jpg";
+import hero from "@/assets/industrial-workshop.png";
+import motorSale from "@/assets/electric-motor-sale.png";
+import sellMotorImg from "@/assets/Buy-Sell-Banner.png";
 import coil from "@/assets/coil.jpg";
 import coil2 from "@/assets/Rewinding.png";
 import threePhase from "@/assets/three-phase.jpg";
+import industrialWorkshop from "@/assets/industrial-workshop.png";
+import factoryElectricianRepairing from "@/assets/factory-electrician-repairing-control-panel.png";   
 import submersible from "@/assets/submersible.jpg";
+import submersibleFuan from "@/assets/submersible.png";
 import riceMill from "@/assets/rice-mill.jpg";
 import fan from "@/assets/fan.jpg";
 import mixer from "@/assets/mixer.jpg";
@@ -36,8 +41,8 @@ const services = [
   { t: "মোটর কয়েল রিওয়াইন্ডিং", d: "পুড়ে যাওয়া মোটরের কয়েল নতুন কপার তার দিয়ে বাধাই।", img: coil2, alt: "মোটরের স্টেটরে কপার কয়েল বাধাই" },
   { t: "রাইস মিল ও কারখানার মোটর", d: "রাইস মিলের মোটর ও সংশ্লিষ্ট বৈদ্যুতিক যন্ত্রের মেরামত।", img: riceMill, alt: "বেল্ট ড্রাইভসহ রাইস মিলের মোটর" },
   { t: "সাবমার্সিবল পাম্প মেরামত", d: "সাবমার্সিবল ও পানির পাম্পের মোটর মেরামত।", img: submersible, alt: "ওয়ার্কবেঞ্চে রাখা সাবমার্সিবল পানির পাম্প" },
-  { t: "পানি তোলার মোটর ও পাম্প ভাড়া", d: "জমি, পুকুর বা কৃষিকাজে পানি তোলার জন্য মোটর ও সাবমার্সিবল পাম্প ভাড়া।", img: submersible, alt: "পানি তোলার সাবমার্সিবল পাম্প", msg: rentalMessage, cta: "পাম্প ভাড়া নিতে যোগাযোগ করুন" },
-  { t: "ইলেকট্রিক মোটর ক্রয়-বিক্রয়", d: "নতুন ও পুরোনো ইলেকট্রিক মোটর কেনা ও বিক্রির জন্য যোগাযোগ করুন।", img: hero, alt: "বিক্রির জন্য রাখা ইলেকট্রিক মোটর", msg: buyMotorMessage, cta: "মোটর কেনাবেচায় যোগাযোগ করুন" },
+  { t: "পানি তোলার মোটর ও পাম্প ভাড়া", d: "জমি, পুকুর বা কৃষিকাজে পানি তোলার জন্য মোটর ও সাবমার্সিবল পাম্প ভাড়া।", img: submersibleFuan, alt: "পানি তোলার সাবমার্সিবল পাম্প", msg: rentalMessage, cta: "পাম্প ভাড়া নিতে যোগাযোগ করুন" },
+  { t: "ইলেকট্রিক মোটর ক্রয়-বিক্রয়", d: "নতুন ও পুরোনো ইলেকট্রিক মোটর কেনা ও বিক্রির জন্য যোগাযোগ করুন।", img: motorSale, alt: "বিক্রির জন্য রাখা ইলেকট্রিক মোটর", msg: buyMotorMessage, cta: "মোটর কেনাবেচায় যোগাযোগ করুন" },
   { t: "ফ্যান মেরামত", d: "সিলিং ও টেবিল ফ্যানের কয়েল, বেয়ারিং ও রেগুলেটর সমস্যা।", img: fan, alt: "খোলা সিলিং ফ্যানের মোটর ও টেবিল ফ্যান" },
   { t: "মিক্সার ও ব্লেন্ডার মেশিন", d: "মিক্সার গ্রাইন্ডার ও ব্লেন্ডারের মোটর মেরামত।", img: mixer, alt: "মেরামতের জন্য খোলা মিক্সার গ্রাইন্ডার" },
   { t: "রাইস কুকার ও অন্যান্য যন্ত্রপাতি", d: "রাইস কুকারের হিটিং এলিমেন্ট, থার্মোস্ট্যাট ও সুইচসহ অন্যান্য ইলেকট্রিক্যাল যন্ত্র মেরামত।", img: riceCooker, alt: "মাল্টিমিটার দিয়ে রাইস কুকার পরীক্ষা" },
@@ -45,7 +50,27 @@ const services = [
 ];
 const formServices = ["মোটর মেরামত", "কয়েল রিওয়াইন্ডিং", "সাবমার্সিবল পাম্প মেরামত", "পানি তোলার মোটর/পাম্প ভাড়া", "ইলেকট্রিক মোটর কিনতে চাই", "ইলেকট্রিক মোটর বিক্রি করতে চাই", "মিল-কারখানার মোটর সেটআপ", "অন্যান্য ইলেকট্রিক্যাল কাজ"];
 const nav = [["#home", "হোম"], ["#about", "আমাদের সম্পর্কে"], ["#services", "সার্ভিস"], ["#rental", "পাম্প ভাড়া"], ["#trade", "মোটর কেনাবেচা"], ["#contact", "যোগাযোগ"]];
-const hp = ["১ HP", "২ HP", "৩ HP", "৪ HP", "৫ HP", "২০ HP", "৩০ HP", "৫০ HP", "অন্যান্য"];
+const hp = [
+  "০.২৫ HP",
+  "০.৫ HP",
+  "০.৭৫ HP",
+  "১ HP",
+  "১.৫ HP",
+  "২ HP",
+  "৩ HP",
+  "৫ HP",
+  "৭.৫ HP",
+  "১০ HP",
+  "১৫ HP",
+  "২০ HP",
+  "২৫ HP",
+  "৩০ HP",
+  "৪০ HP",
+  "৫০ HP",
+  "৭৫ HP",
+  "১০০ HP",
+  "অন্যান্য"
+];
 const steps = [
   { i: PhoneCall, t: "যোগাযোগ করুন" },
   { i: ClipboardList, t: "মোটর বা মেশিনের সমস্যা জানান" },
@@ -58,6 +83,7 @@ const people = [
     role: "ব্যবসার পরিচিতি ও গ্রাহক যোগাযোগ",
     desc: "আশিক ইলেকট্রিক ওয়ার্কস এন্ড সার্ভিসিং সেন্টারের সার্ভিস, মোটর কেনাবেচা, পাম্প ভাড়া এবং অন্যান্য কাজ সম্পর্কে জানতে যোগাযোগ করুন।",
     img: person1Img,
+    phone:"+8801705-809316",
     alt: "আশিক — আশিক ইলেকট্রিক ওয়ার্কস এন্ড সার্ভিসিং সেন্টার",
   },
   {
@@ -65,6 +91,7 @@ const people = [
     role: "মোটর মেরামত ও মিল-কারখানার ইলেকট্রিক্যাল কাজ",
     desc: "সিঙ্গেল ফেজ ও থ্রি ফেজ মোটর, কয়েল রিওয়াইন্ডিং, সাবমার্সিবল পাম্প এবং মিল-কারখানার বিভিন্ন ইলেকট্রিক্যাল কাজ সম্পর্কে জানতে যোগাযোগ করুন।",
     img: person2Img,
+    phone:"+8801719-825596",
     alt: "মোঃ ওয়াজেদ আলী — মোটর মেরামত ও ইলেকট্রিক্যাল কাজ",
   },
 ];
@@ -119,7 +146,7 @@ function Index() {
           <div className="container-site grid items-center gap-10 py-14 md:py-20 lg:grid-cols-2">
             <div className="animate-rise min-w-0">
               <p className="mb-4 inline-flex rounded-full bg-accent/15 px-3 py-1 text-sm text-accent">{business.address}</p>
-              <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">মোটর মেরামত, কয়েল রিওয়াইন্ডিং, পাম্প ভাড়া ও মোটর ক্রয়-বিক্রয়</h1>
+              <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">মোটর মেরামত, কয়েল রিওয়াইন্ডিং ও মিল-কারখানার সকল ইলেকট্রিক্যাল কাজ</h1>
               <p className="mt-5 text-lg opacity-85">বাসাবাড়ি, দোকান, রাইস মিল ও কারখানার মোটর, সাবমার্সিবল পাম্প মেরামত ও ভাড়া, মোটর কেনাবেচা এবং মিল-কারখানার ইলেকট্রিক্যাল কাজ।</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <CallLink className={`${btn} bg-accent text-accent-foreground hover:brightness-105`}><Phone className="size-5" /> ফোন করুন</CallLink>
@@ -144,6 +171,7 @@ function Index() {
                   <h3 className="text-xl font-bold text-primary">{p.name}</h3>
                   <p className="mt-1 font-medium text-accent">{p.role}</p>
                   <p className="mt-3 text-muted-foreground">{p.desc}</p>
+                  <p className="mt-3 text-muted-foreground">মোবাইল নম্বর: {p.phone}</p>
                 </div>
               </article>
             ))}
@@ -169,7 +197,7 @@ function Index() {
         </section>
 
         <section id="rental" className="container-site grid items-center gap-10 py-16 lg:grid-cols-2">
-          <img src={submersible} alt="পানি তোলার সাবমার্সিবল পাম্প" loading="lazy" width={944} height={704} className="aspect-[4/3] w-full rounded-2xl object-cover" />
+          <img src={submersibleFuan} alt="পানি তোলার সাবমার্সিবল পাম্প" loading="lazy" width={944} height={704} className="aspect-[4/3] w-full rounded-2xl object-cover" />
           <div>
             <h2 className="text-3xl font-bold text-primary">পানি তোলার মোটর ও সাবমার্সিবল পাম্প ভাড়া</h2>
             <p className="mt-4 text-lg text-muted-foreground">জমি, পুকুর, কৃষিকাজ বা অন্যান্য প্রয়োজনীয় কাজে পানি তোলার জন্য মোটর ও সাবমার্সিবল পাম্প ভাড়ার বিষয়ে যোগাযোগ করুন। পানির গভীরতা, প্রয়োজনীয় পানি, বিদ্যুতের ব্যবস্থা এবং কাজের ধরন অনুযায়ী উপযুক্ত পাম্প সম্পর্কে আলোচনা করে নিতে পারবেন।</p>
@@ -193,12 +221,12 @@ function Index() {
               </div>
               <p className="mt-4 text-sm opacity-70">নির্দিষ্ট মোটরের প্রাপ্যতা ও দাম যোগাযোগের মাধ্যমে নিশ্চিত করা হয়।</p>
             </div>
-            <img src={hero} alt="ক্রয়-বিক্রয়ের জন্য ইলেকট্রিক মোটর" loading="lazy" width={1280} height={960} className="aspect-[4/3] w-full rounded-2xl object-cover" />
+            <img src={sellMotorImg} alt="ক্রয়-বিক্রয়ের জন্য ইলেকট্রিক মোটর" loading="lazy" width={1280} height={960} className="aspect-[4/3] w-full rounded-2xl object-cover" />
           </div>
         </section>
 
         <section className="container-site grid items-center gap-10 py-16 lg:grid-cols-2">
-          <img src={threePhase} alt="মিল-কারখানায় মোটর সেটআপ" loading="lazy" width={944} height={704} className="aspect-[4/3] w-full rounded-2xl object-cover" />
+          <img src={factoryElectricianRepairing} alt="মিল-কারখানায় মোটর সেটআপ" loading="lazy" width={944} height={704} className="aspect-[4/3] w-full rounded-2xl object-cover" />
           <div>
             <h2 className="text-3xl font-bold text-primary">মিল-কারখানার মোটর সেটআপ ও ইলেকট্রিক্যাল কাজ</h2>
             <p className="mt-4 text-lg text-muted-foreground">রাইস মিল, কারখানা, ওয়ার্কশপ এবং অন্যান্য প্রতিষ্ঠানের মোটর স্থাপন, মোটর সংযোগ এবং প্রয়োজনীয় ইলেকট্রিক্যাল কাজের জন্য যোগাযোগ করুন। কাজের ধরন, মোটরের ক্ষমতা এবং স্থাপনার প্রয়োজন অনুযায়ী বিস্তারিত আলোচনা করে নেওয়া যাবে।</p>
