@@ -11,8 +11,7 @@ import sellMotorImg from "@/assets/Buy-Sell-Banner.png";
 import coil from "@/assets/coil.jpg";
 import coil2 from "@/assets/Rewinding.png";
 import threePhase from "@/assets/three-phase.jpg";
-import industrialWorkshop from "@/assets/industrial-workshop.png";
-import factoryElectricianRepairing from "@/assets/factory-electrician-repairing-control-panel.png";   
+import factoryElectricianRepairing from "@/assets/factory-electrician-repairing-control-panel.png";
 import submersible from "@/assets/submersible.jpg";
 import submersibleFuan from "@/assets/submersible.png";
 import riceMill from "@/assets/rice-mill.jpg";
@@ -83,7 +82,7 @@ const people = [
     role: "ব্যবসার পরিচিতি ও গ্রাহক যোগাযোগ",
     desc: "আশিক ইলেকট্রিক ওয়ার্কস এন্ড সার্ভিসিং সেন্টারের সার্ভিস, মোটর কেনাবেচা, পাম্প ভাড়া এবং অন্যান্য কাজ সম্পর্কে জানতে যোগাযোগ করুন।",
     img: person1Img,
-    phone:"+8801705-809316",
+    phone: "+8801705-809316",
     alt: "আশিক — আশিক ইলেকট্রিক ওয়ার্কস এন্ড সার্ভিসিং সেন্টার",
   },
   {
@@ -91,7 +90,7 @@ const people = [
     role: "মোটর মেরামত ও মিল-কারখানার ইলেকট্রিক্যাল কাজ",
     desc: "সিঙ্গেল ফেজ ও থ্রি ফেজ মোটর, কয়েল রিওয়াইন্ডিং, সাবমার্সিবল পাম্প এবং মিল-কারখানার বিভিন্ন ইলেকট্রিক্যাল কাজ সম্পর্কে জানতে যোগাযোগ করুন।",
     img: person2Img,
-    phone:"+8801719-825596",
+    phone: "+8801719-825596",
     alt: "মোঃ ওয়াজেদ আলী — মোটর মেরামত ও ইলেকট্রিক্যাল কাজ",
   },
 ];
@@ -103,8 +102,17 @@ function CallLink({ className, children }: { className: string; children: ReactN
   return href ? <a href={href} className={className}>{children}</a> : <a href="#contact" className={className} title="ফোন নম্বর শীঘ্রই যুক্ত হবে">{children}</a>;
 }
 function WaLink({ msg, className, children }: { msg?: string; className: string; children: ReactNode }) {
-  const href = whatsappHref(msg);
-  return href ? <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}</a> : <a href="#contact" className={className}>{children}</a>;
+  const href = telHref();
+
+return (
+  <a
+    href={href || "#contact"}
+    className={`${className} box-border inline-flex min-w-0 max-w-full items-center justify-center gap-2 whitespace-normal`}
+    title={!href ? "ফোন নম্বর শীঘ্রই যুক্ত হবে" : undefined}
+  >
+    {children}
+  </a>
+);
 }
 
 function Index() {
@@ -149,8 +157,23 @@ function Index() {
               <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">মোটর মেরামত, কয়েল রিওয়াইন্ডিং ও মিল-কারখানার সকল ইলেকট্রিক্যাল কাজ</h1>
               <p className="mt-5 text-lg opacity-85">বাসাবাড়ি, দোকান, রাইস মিল ও কারখানার মোটর, সাবমার্সিবল পাম্প মেরামত ও ভাড়া, মোটর কেনাবেচা এবং মিল-কারখানার ইলেকট্রিক্যাল কাজ।</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <CallLink className={`${btn} bg-accent text-accent-foreground hover:brightness-105`}><Phone className="size-5" /> ফোন করুন</CallLink>
-                <WaLink className={`${btn} bg-whatsapp text-primary-foreground hover:brightness-110`}><MessageCircle className="size-5" /> WhatsApp-এ যোগাযোগ</WaLink>
+                <a
+                  href="tel:+8801705809316"
+                  className={`${btn} bg-accent text-accent-foreground hover:brightness-105`}
+                >
+                  <Phone className="size-5" />
+                  ফোন করুন
+                </a>
+
+                <a
+                  href="https://wa.me/8801705809316?text=হ্যালো%20আশিক%20ইলেকট্রিক%20ওয়ার্কস%20এন্ড%20সার্ভিসিং%20সেন্টার,%20আমি%20আপনার%20সার্ভিস%20নিয়ে%20কিছু%20জানতে%20চাই।"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${btn} bg-whatsapp text-primary-foreground hover:brightness-110`}
+                >
+                  <MessageCircle className="size-5" />
+                  WhatsApp-এ যোগাযোগ
+                </a>
                 <a href="#services" className={`${btn} border border-ink-foreground/30 hover:bg-ink-foreground/10`}>সার্ভিস দেখুন <ArrowRight className="size-4" /></a>
               </div>
               {!configured && <p className="mt-4 text-sm opacity-70">ফোন ও WhatsApp নম্বর শীঘ্রই যুক্ত করা হবে।</p>}
@@ -263,8 +286,22 @@ function Index() {
             <h2 className="text-3xl font-bold text-primary">যোগাযোগ</h2>
             <p className="mt-4 flex gap-2"><MapPin className="size-5 shrink-0 text-accent" />{business.address}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <CallLink className={`${btn} bg-accent text-accent-foreground`}><Phone className="size-5" /> কল করুন</CallLink>
-              <WaLink className={`${btn} bg-whatsapp text-primary-foreground`}><MessageCircle className="size-5" /> WhatsApp</WaLink>
+              <CallLink
+                href="tel:+8801719825596"
+                className={`${btn} bg-accent text-accent-foreground`}
+              >
+                <Phone className="size-5" />
+                কল করুন
+              </CallLink>
+              <a
+                href="https://wa.me/8801705809316?text=হ্যালো%20আশিক%20ইলেকট্রিক%20ওয়ার্কস%20এন্ড%20সার্ভিসিং%20সেন্টার,%20আমি%20আপনার%20সার্ভিস%20নিয়ে%20কিছু%20জানতে%20চাই।"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${btn} bg-whatsapp text-primary-foreground`}
+              >
+                <MessageCircle className="size-5" />
+                WhatsApp
+              </a>
             </div>
             {!configured && <p className="mt-4 text-sm text-muted-foreground">ফোন নম্বর এখনো যুক্ত করা হয়নি।</p>}
           </div>
@@ -285,7 +322,16 @@ function Index() {
         <WaLink className="flex flex-col items-center gap-1 border-x py-2.5 text-sm font-medium text-whatsapp"><MessageCircle className="size-5" />WhatsApp</WaLink>
         <a href="#contact" className="flex flex-col items-center gap-1 py-2.5 text-sm font-medium"><ClipboardList className="size-5" />ফর্ম</a>
       </div>
-      <WaLink className="fixed bottom-6 right-6 z-40 hidden size-14 place-items-center rounded-full bg-whatsapp text-primary-foreground shadow-xl md:grid"><MessageCircle className="size-7" /><span className="sr-only">WhatsApp</span></WaLink>
+      <a
+        href="https://wa.me/8801705809316"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp-এ যোগাযোগ করুন"
+        className="fixed bottom-6 right-6 z-40 hidden size-14 place-items-center rounded-full bg-whatsapp text-primary-foreground shadow-xl md:grid"
+      >
+        <MessageCircle className="size-7" />
+        <span className="sr-only">WhatsApp</span>
+      </a>
     </div>
   );
 }

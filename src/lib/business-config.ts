@@ -4,7 +4,7 @@ export const business = {
   shortName: "আশিক ইলেকট্রিক",
   owner: "মোঃ ওয়াজেদ আলী",
   // International format, e.g. "+8801712345678". Leave empty until verified.
-  phone: "",
+  phone: "+8801705809316",
   whatsapp: "",
   email: "",
   address: "সিংড়া রোড, জয়পুরহাট কলম, সিংড়া, নাটোর, বাংলাদেশ",
