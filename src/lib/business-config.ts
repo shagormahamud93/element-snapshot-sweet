@@ -7,7 +7,7 @@ export const business = {
   phone: "+8801705809316",
   whatsapp: "",
   email: "",
-  address: "সিংড়া রোড, জয়পুরহাট কলম, সিংড়া, নাটোর, বাংলাদেশ",
+  address: "সিংড়া রোড, জগতপুর কলম, সিংড়া, নাটোর, বাংলাদেশ",
 };
 
 export const defaultWhatsAppMessage = `আসসালামু আলাইকুম। আমি ${business.name}ের সাথে যোগাযোগ করতে চাই।

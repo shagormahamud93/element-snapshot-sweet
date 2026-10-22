@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "LocalBusiness", name: business.name, address: { "@type": "PostalAddress", streetAddress: "সিংড়া রোড, জয়পুরহাট কলম", addressLocality: "সিংড়া", addressRegion: "নাটোর", addressCountry: "BD" }, currenciesAccepted: "BDT", ...(business.phone && { telephone: business.phone }) }) }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "LocalBusiness", name: business.name, address: { "@type": "PostalAddress", streetAddress: "সিংড়া রোড, জগতপুর কলম", addressLocality: "সিংড়া", addressRegion: "নাটোর", addressCountry: "BD" }, currenciesAccepted: "BDT", ...(business.phone && { telephone: business.phone }) }) }],
   }),
   component: Index,
 });
