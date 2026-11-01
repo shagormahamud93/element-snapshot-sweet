@@ -22,14 +22,72 @@ import riceCooker from "@/assets/rice-cooker.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${business.name} | মোটর মেরামত, পাম্প ভাড়া ও মোটর ক্রয়-বিক্রয়` },
-      { name: "description", content: "সিংড়া, নাটোরে মোটর মেরামত, মোটর কয়েল রিওয়াইন্ডিং, সাবমার্সিবল পাম্প ভাড়া, পানি তোলার মোটর ভাড়া, ইলেকট্রিক মোটর ক্রয়-বিক্রয় এবং রাইস মিল ও মিল-কারখানার মোটর সেটআপ ও ইলেকট্রিক্যাল কাজ।" },
-      { property: "og:title", content: business.name },
-      { property: "og:description", content: "মোটর মেরামত, কয়েল রিওয়াইন্ডিং, পাম্প ভাড়া ও মোটর ক্রয়-বিক্রয় — সিংড়া, নাটোর।" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      {
+        title:
+          "Ashik Electric Works | মোটর মেরামত ও কয়েল রিওয়াইন্ডিং সিংড়া, নাটোর",
+      },
+      {
+        name: "description",
+        content:
+          "সিংড়া, নাটোরে মোটর মেরামত, মোটর কয়েল রিওয়াইন্ডিং, সাবমার্সিবল পাম্প মেরামত ও ভাড়া, ইলেকট্রিক মোটর ক্রয়-বিক্রয় এবং রাইস মিলের মোটর সেটআপ। যোগাযোগ করুন Ashik Electric Works-এ।",
+      },
+      {
+        name: "robots",
+        content: "index, follow",
+      },
+      {
+        property: "og:title",
+        content:
+          "Ashik Electric Works | মোটর মেরামত সিংড়া, নাটোর",
+      },
+      {
+        property: "og:description",
+        content:
+          "মোটর মেরামত, কয়েল রিওয়াইন্ডিং, পাম্প ভাড়া ও মোটর কেনাবেচা।",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        property: "og:url",
+        content: "https://ashik-electric-works.vercel.app/",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
     ],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "LocalBusiness", name: business.name, address: { "@type": "PostalAddress", streetAddress: "সিংড়া রোড, জগতপুর কলম", addressLocality: "সিংড়া", addressRegion: "নাটোর", addressCountry: "BD" }, currenciesAccepted: "BDT", ...(business.phone && { telephone: business.phone }) }) }],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://ashik-electric-works.vercel.app/",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: business.name,
+          url: "https://ashik-electric-works.vercel.app/",
+          description:
+            "সিংড়া, নাটোরে মোটর মেরামত ও ইলেকট্রিক্যাল সার্ভিস।",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "সিংড়া রোড, জগতপুর কলম",
+            addressLocality: "সিংড়া",
+            addressRegion: "নাটোর",
+            addressCountry: "BD",
+          },
+          currenciesAccepted: "BDT",
+          ...(business.phone && {
+            telephone: business.phone,
+          }),
+        }),
+      },
+    ],
   }),
   component: Index,
 });
