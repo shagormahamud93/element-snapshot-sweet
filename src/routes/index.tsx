@@ -108,7 +108,7 @@ const services = [
 const formServices = ["মোটর মেরামত", "কয়েল রিওয়াইন্ডিং", "সাবমার্সিবল পাম্প মেরামত", "পানি তোলার মোটর/পাম্প ভাড়া", "ইলেকট্রিক মোটর কিনতে চাই", "ইলেকট্রিক মোটর বিক্রি করতে চাই", "মিল-কারখানার মোটর সেটআপ", "অন্যান্য ইলেকট্রিক্যাল কাজ"];
 const nav = [["#home", "হোম"], ["#about", "আমাদের সম্পর্কে"], ["#services", "সার্ভিস"], ["#rental", "পাম্প ভাড়া"], ["#trade", "মোটর কেনাবেচা"], ["#contact", "যোগাযোগ"]];
 const hp = [
-  "০.33 HP",
+  "০.৩৩ HP",
   "০.৫0 HP",
   "০.৭৫ HP",
   "১ HP",
@@ -162,15 +162,15 @@ function CallLink({ className, children }: { className: string; children: ReactN
 function WaLink({ msg, className, children }: { msg?: string; className: string; children: ReactNode }) {
   const href = telHref();
 
-return (
-  <a
-    href={href || "#contact"}
-    className={`${className} box-border inline-flex min-w-0 max-w-full items-center justify-center gap-2 whitespace-normal`}
-    title={!href ? "ফোন নম্বর শীঘ্রই যুক্ত হবে" : undefined}
-  >
-    {children}
-  </a>
-);
+  return (
+    <a
+      href={href || "#contact"}
+      className={`${className} box-border inline-flex min-w-0 max-w-full items-center justify-center gap-2 whitespace-normal`}
+      title={!href ? "ফোন নম্বর শীঘ্রই যুক্ত হবে" : undefined}
+    >
+      {children}
+    </a>
+  );
 }
 
 function Index() {
@@ -194,7 +194,12 @@ function Index() {
           </a>
           <nav className="hidden items-center gap-6 lg:flex">{nav.map(([h, l]) => <a key={h} href={h} className="font-medium hover:text-accent">{l}</a>)}</nav>
           <div className="flex items-center gap-2">
-            <CallLink className={`${btn} hidden bg-accent py-2 text-accent-foreground hover:brightness-105 sm:inline-flex`}><Phone className="size-4" /> ফোন করুন</CallLink>
+            <CallLink
+              className={`${btn} hidden bg-accent py-2 text-accent-foreground hover:brightness-105 sm:inline-flex max-[399px]:gap-1 max-[399px]:!px-2 max-[399px]:!text-xs max-[399px]:whitespace-nowrap max-[399px]:flex-nowrap max-[399px]:shrink-0`}
+            >
+              <Phone className="size-4 shrink-0" />
+              <span>ফোন করুন</span>
+            </CallLink>
             <button className="grid size-10 place-items-center rounded-lg border lg:hidden" aria-label={open ? "মেনু বন্ধ করুন" : "মেনু খুলুন"} aria-expanded={open} aria-controls="mnav" onClick={() => setOpen(!open)}>
               {open ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
