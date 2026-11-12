@@ -195,7 +195,7 @@ function Index() {
           <nav className="hidden items-center gap-6 lg:flex">{nav.map(([h, l]) => <a key={h} href={h} className="font-medium hover:text-accent">{l}</a>)}</nav>
           <div className="flex items-center gap-2">
             <CallLink
-              className={`${btn} hidden bg-accent py-2 text-accent-foreground hover:brightness-105 sm:inline-flex max-[399px]:gap-1 max-[399px]:!px-2 max-[399px]:!text-xs max-[399px]:whitespace-nowrap max-[399px]:flex-nowrap max-[399px]:shrink-0`}
+              className={`${btn} hidden bg-accent py-2 text-accent-foreground hover:brightness-105 sm:inline-flex max-[399px]:gap-1 max-[399px]:!px-3 max-[399px]:!text-xs max-[399px]:whitespace-nowrap max-[399px]:flex-nowrap max-[399px]:shrink-0`}
             >
               <Phone className="size-4 shrink-0" />
               <span>ফোন করুন</span>
